@@ -1,70 +1,134 @@
-# Getting Started with Create React App
+# API Sandbox
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![React](https://img.shields.io/badge/React-19-61DAFB?style=flat-square&logo=react&logoColor=black)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3-06B6D4?style=flat-square&logo=tailwindcss&logoColor=white)
+![CRA](https://img.shields.io/badge/Create_React_App-5-09D3AC?style=flat-square&logo=createreactapp&logoColor=white)
+![License](https://img.shields.io/badge/License-MIT-yellow?style=flat-square)
+![Browser Only](https://img.shields.io/badge/Runs_In-Browser-orange?style=flat-square&logo=googlechrome&logoColor=white)
 
-## Available Scripts
+A browser-based HTTP client that works like Postman — without the desktop app. Build and test API requests directly in your browser, with your data staying local the entire time.
 
-In the project directory, you can run:
+> **Note:** Because this runs entirely in-browser, some things Postman handles natively (cross-origin requests, restricted headers, custom TLS certs) aren't possible here. See [Browser Limitations](#browser-limitations) for details.
 
-### `npm start`
+---
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Getting Started
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+```bash
+npm install
+npm start
+```
 
-### `npm test`
+Open [http://localhost:3000](http://localhost:3000). The app hot-reloads on changes.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+---
 
-### `npm run build`
+## Features
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Request Builder
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Supports all HTTP methods with full control over query parameters, headers, cookies, redirect behavior, and per-request settings (timeout, cache policy, credentials, CORS mode).
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+**Body types:**
+- JSON
+- Raw text (XML, HTML, etc.)
+- Form-data (including file uploads)
+- x-www-form-urlencoded
+- GraphQL
+- Binary
 
-### `npm run eject`
+### Authentication
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Built-in helpers for Bearer Token, Basic Auth, API Key (header or query param), and Digest (best-effort). Auth is automatically injected — no need to handcraft headers manually.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Environments & Variables
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Create named environments with key-value pairs (secrets supported). Use `{{variable}}` syntax anywhere in the URL, params, headers, or body. Switch environments from the sidebar.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### Tabs, History & Collections
 
-## Learn More
+- **Tabs** — Multi-tab workspace with unsaved-change indicators
+- **History** — Last 100 requests, replayable with one click
+- **Collections** — Save requests into folders, import/export as JSON
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Response Viewer
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+View responses in three modes:
 
-### Code Splitting
+| Mode | Description |
+|------|-------------|
+| Pretty | Collapsible JSON tree with search |
+| Raw | Unformatted response body |
+| Preview | Rendered HTML |
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Also shows status code, duration, size, final URL, and response headers. Response body can be downloaded directly.
 
-### Analyzing the Bundle Size
+### Code Export
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+Generate ready-to-use code snippets for:
+- cURL
+- JavaScript Fetch
+- Axios
+- Node.js (native `http`)
+- Python Requests
+- PHP cURL
 
-### Making a Progressive Web App
+### Tests
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+Write lightweight assertions against any response:
+- Status code
+- Response time
+- Header presence
+- Body contains / does not contain
+- JSONPath exists / equals
+- Array length
 
-### Advanced Configuration
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+## Browser Limitations
 
-### Deployment
+This app runs entirely client-side, which comes with some constraints compared to a native API client:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+| Limitation | Detail |
+|------------|--------|
+| **CORS** | Cross-origin APIs that don't send permissive CORS headers will block requests. Use a server-side proxy for full compatibility. |
+| **Restricted headers** | Browsers silently block headers like `Host`, `User-Agent`, `Content-Length`, etc. |
+| **Cookies** | No access to a persistent cookie jar; limited compared to native clients. |
+| **TLS / certificates** | Custom certificate stores aren't supported in-browser. |
+| **Digest / OAuth** | Partial support only — some flows require low-level primitives the browser doesn't expose. |
 
-### `npm run build` fails to minify
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Scripts
+
+| Command | Description |
+|---------|-------------|
+| `npm start` | Dev server on port 3000 |
+| `npm test` | Jest in watch mode |
+| `npm run build` | Production build → `build/` |
+| `npm run eject` | Ejects CRA config (irreversible) |
+
+---
+
+## Tech Stack
+
+| Layer | Technology |
+|-------|-----------|
+| UI | React 19, Tailwind CSS 3 |
+| Icons | Lucide React |
+| Build | Create React App (react-scripts 5) |
+| Requests | `fetch` + `AbortController` |
+| Persistence | `localStorage` |
+| Testing | Jest, React Testing Library |
+
+---
+
+## Privacy
+
+No data leaves your browser. All requests, history, environments, and collections are stored in `localStorage`. Nothing is sent to any server unless you explicitly export and share your collections.
+
+---
+
+## License
+
+MIT
