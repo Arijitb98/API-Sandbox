@@ -5,9 +5,7 @@ import {
   Download, 
   ChevronRight, 
   ChevronDown,
-  ExternalLink,
   FileJson,
-  FileText,
   Eye
 } from 'lucide-react';
 

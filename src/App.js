@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { Send, Code, Save, Settings, ChevronLeft, ChevronRight, Menu } from 'lucide-react';
+import { Send, Code, Save } from 'lucide-react';
 
 // Components
 import { Sidebar } from './components/Sidebar';
@@ -27,7 +27,6 @@ import {
   getCollections,
   saveCollections,
   getSettings,
-  saveSettings,
   exportData,
   importData,
 } from './utils/storage';
@@ -64,10 +63,12 @@ export default function ApiSandbox() {
     setCollections(getCollections());
     setEnvironments(getEnvironments());
     setActiveEnv(getActiveEnvironment());
-    
+
     // Load default settings into first tab
     const settings = getSettings();
-    updateActiveTab({ settings });
+    setTabs(prevTabs => prevTabs.map(tab => 
+      tab.id === prevTabs[0]?.id ? { ...tab, settings } : tab
+    ));
   }, []);
 
   // Update active tab helper
@@ -233,6 +234,8 @@ export default function ApiSandbox() {
             bodyData = request.body;
             contentType = 'application/octet-stream';
             break;
+          default:
+            break;
         }
 
         if (bodyData) {
@@ -293,7 +296,7 @@ export default function ApiSandbox() {
       }
 
       // Add to history
-      const historyEntry = addToHistory(
+      addToHistory(
         {
           url: activeTab.url,
           method: activeTab.method,

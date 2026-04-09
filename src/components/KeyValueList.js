@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Send, Plus, Trash2, Copy, Check } from 'lucide-react';
+import React from 'react';
+import { Plus } from 'lucide-react';
 import { HeaderRow } from './HeaderRow';
 
 // Key-Value List Component (for headers and params)

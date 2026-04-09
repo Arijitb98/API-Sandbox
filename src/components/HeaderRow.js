@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Send, Plus, Trash2, Copy, Check } from 'lucide-react';
+import React from 'react';
+import { Trash2 } from 'lucide-react';
 
 // Header Row Component
 export function HeaderRow({ header, index, onUpdate, onRemove }) {

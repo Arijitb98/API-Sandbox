@@ -8,7 +8,6 @@ import {
   ChevronRight,
   ChevronDown,
   Edit2,
-  MoreVertical,
   Download,
   Upload
 } from 'lucide-react';
