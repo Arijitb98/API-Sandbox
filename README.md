@@ -132,3 +132,7 @@ No data leaves your browser. All requests, history, environments, and collection
 ## License
 
 MIT
+
+---
+
+[Live demo](https://ClaudeMaxUser.github.io/API-Sandbox/)
